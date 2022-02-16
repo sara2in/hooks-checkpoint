@@ -95,7 +95,7 @@ export default function ProductCard(props) {
                         <ArrowBackIosNewIcon fontSize="large"  sx={{ alignSelf: 'center' }} onClick={() => dispatch({ type: 'decrement' })} />
                         <CardMedia
                             component="img"
-                            image={productImage} 
+                            image={productImage? productImage: 'https://media.istockphoto.com/vectors/cross-sign-red-hand-drawn-brush-paint-x-letter-handwritten-crisscross-vector-id1276735653?k=20&m=1276735653&s=612x612&w=0&h=jMkY-27H5JC4Dt9Vlq4PurAJo9AFNQ9-sJPmLcixtlU=' } 
                             alt="Some Model"
                         />
                         <ArrowForwardIosIcon fontSize="large" sx={{ alignSelf: 'center' }} onClick={() => dispatch({ type: 'increment' })} />
