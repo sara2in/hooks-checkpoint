@@ -27,6 +27,7 @@ const style = {
 
 export default function ProductCard(props) {
     const [open, setOpen] = React.useState(false);
+    const [endOfImg, setEndOfImg] = React.useState(0);
     const [productImage, setProductImage] = React.useState('');
 
 
@@ -42,8 +43,8 @@ export default function ProductCard(props) {
         fetch(url)
             .then((response) => response.json())
             .then((res) => {
-                console.log('test')
-                console.log('photo:', res.results[0].photos[0].thumbnail_url)
+                console.log('photoLength:', res.results[0].photos[0].thumbnail_url)
+                setEndOfImg(res.results[0].photos.length)
                 setProductImage(res.results[0].photos[state.count].thumbnail_url)
             })
             .catch((err) => {
@@ -56,11 +57,17 @@ export default function ProductCard(props) {
     function reducer(state, action) {
         switch (action.type) {
             case 'increment':
-                console.log(state.count)
-                return { count: state.count + 1 };
+                if (state.count < endOfImg - 1) {
+                    return { count: state.count +1 };
+                } else {
+                    return { count: state.count };
+                }              
             case 'decrement':
-                console.log(state.count)
-                return { count: state.count - 1 };
+                if ( state.count > 0 ) {
+                    return { count: state.count - 1 };
+                } else {
+                    return { count: state.count };
+                }
             default:
                 throw new Error();
         }
@@ -74,7 +81,7 @@ export default function ProductCard(props) {
 
     return (
         <Card>
-            <CardActionArea  onClick={e => { handleOpen(props.productInfo.id) }}>
+            <CardActionArea  sx={{height: 1 }} onClick={e => { handleOpen(props.productInfo.id) }}>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {props.productInfo.name}
