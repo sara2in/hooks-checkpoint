@@ -29,7 +29,7 @@ export default function ProductCard(props) {
     const [open, setOpen] = React.useState(false);
     const [endOfImg, setEndOfImg] = React.useState(0);
     const [productImage, setProductImage] = React.useState('');
-
+    const [productThumbnail, setProductThumbnail] = React.useState('');
 
     const handleOpen = (id) => {
         photoCall(id)
@@ -43,9 +43,9 @@ export default function ProductCard(props) {
         fetch(url)
             .then((response) => response.json())
             .then((res) => {
-                console.log('photoLength:', res.results[0].photos[0].thumbnail_url)
+                setProductThumbnail(res.results[0].photos[0].thumbnail_url)
                 setEndOfImg(res.results[0].photos.length)
-                setProductImage(res.results[0].photos[state.count].thumbnail_url)
+                setProductImage(res.results[0].photos[state.count].url)
             })
             .catch((err) => {
                 // setError("No Products Found");
@@ -58,12 +58,12 @@ export default function ProductCard(props) {
         switch (action.type) {
             case 'increment':
                 if (state.count < endOfImg - 1) {
-                    return { count: state.count +1 };
+                    return { count: state.count + 1 };
                 } else {
                     return { count: state.count };
-                }              
+                }
             case 'decrement':
-                if ( state.count > 0 ) {
+                if (state.count > 0) {
                     return { count: state.count - 1 };
                 } else {
                     return { count: state.count };
@@ -81,7 +81,14 @@ export default function ProductCard(props) {
 
     return (
         <Card>
-            <CardActionArea  sx={{height: 1 }} onClick={e => { handleOpen(props.productInfo.id) }}>
+            <CardActionArea sx={{ height: 1 }} onClick={e => { handleOpen(props.productInfo.id) }}>
+                <CardMedia
+                    component="img"
+                    height="140"
+                    width="auto"
+                    image={productThumbnail ? productThumbnail : 'https://media.istockphoto.com/vectors/cross-sign-red-hand-drawn-brush-paint-x-letter-handwritten-crisscross-vector-id1276735653?k=20&m=1276735653&s=612x612&w=0&h=jMkY-27H5JC4Dt9Vlq4PurAJo9AFNQ9-sJPmLcixtlU='}
+                    alt="green iguana"
+                />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {props.productInfo.name}
@@ -99,10 +106,10 @@ export default function ProductCard(props) {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style}>
-                        <ArrowBackIosNewIcon fontSize="large"  sx={{ alignSelf: 'center' }} onClick={() => dispatch({ type: 'decrement' })} />
+                        <ArrowBackIosNewIcon fontSize="large" sx={{ alignSelf: 'center' }} onClick={() => dispatch({ type: 'decrement' })} />
                         <CardMedia
                             component="img"
-                            image={productImage? productImage: 'https://media.istockphoto.com/vectors/cross-sign-red-hand-drawn-brush-paint-x-letter-handwritten-crisscross-vector-id1276735653?k=20&m=1276735653&s=612x612&w=0&h=jMkY-27H5JC4Dt9Vlq4PurAJo9AFNQ9-sJPmLcixtlU=' } 
+                            image={productImage ? productImage : 'https://media.istockphoto.com/vectors/cross-sign-red-hand-drawn-brush-paint-x-letter-handwritten-crisscross-vector-id1276735653?k=20&m=1276735653&s=612x612&w=0&h=jMkY-27H5JC4Dt9Vlq4PurAJo9AFNQ9-sJPmLcixtlU='}
                             alt="Some Model"
                         />
                         <ArrowForwardIosIcon fontSize="large" sx={{ alignSelf: 'center' }} onClick={() => dispatch({ type: 'increment' })} />

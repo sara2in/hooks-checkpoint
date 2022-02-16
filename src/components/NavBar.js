@@ -55,7 +55,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-    const { handleSearchClick } = useContext(AppContext);
     return (
         <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
@@ -68,10 +67,6 @@ export default function SearchAppBar() {
             >
                 Products
             </Typography>
-            {/* <Button 
-                variant="contained"
-                onClick={handleSearchClick}
-                >See List</Button> */}
             </Toolbar>
         </AppBar>
         </Box>
