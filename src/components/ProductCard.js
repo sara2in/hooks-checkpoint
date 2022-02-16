@@ -35,14 +35,17 @@ export default function ProductCard(props) {
         setOpen(true)
     };
 
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        state.count = 0
+        setOpen(false)
+    }
 
     function photoCall(id) {
         let url = `http://52.26.193.201:3000/products/${id}/styles/`
         fetch(url)
             .then((response) => response.json())
             .then((res) => {
-                setProductThumbnail(res.results[0].photos[0].thumbnail_url)
+                setProductThumbnail(res.results[0].photos[0].url)
                 setEndOfImg(res.results[0].photos.length)
                 setProductImage(res.results[0].photos[state.count].url)
             })
