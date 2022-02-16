@@ -17,9 +17,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    height: '80%',
     p: 4,
-    height: '50vh',
     display: 'inline-flex',
     justifyContent: 'center',
 };
@@ -107,13 +106,13 @@ export default function ProductCard(props) {
                     aria-describedby="modal-modal-description"
                 >
                     <Box sx={style}>
-                        <ArrowBackIosNewIcon fontSize="large" sx={{ alignSelf: 'center' }} onClick={() => dispatch({ type: 'decrement' })} />
+                        <ArrowBackIosNewIcon fontSize="large" sx={{ alignSelf: 'center', color: '#9e9e9e' }} onClick={() => dispatch({ type: 'decrement' })} />
                         <CardMedia
                             component="img"
                             image={productImage ? productImage : 'https://media.istockphoto.com/vectors/cross-sign-red-hand-drawn-brush-paint-x-letter-handwritten-crisscross-vector-id1276735653?k=20&m=1276735653&s=612x612&w=0&h=jMkY-27H5JC4Dt9Vlq4PurAJo9AFNQ9-sJPmLcixtlU='}
                             alt="Some Model"
                         />
-                        <ArrowForwardIosIcon fontSize="large" sx={{ alignSelf: 'center' }} onClick={() => dispatch({ type: 'increment' })} />
+                        <ArrowForwardIosIcon fontSize="large" sx={{ alignSelf: 'center', color: '#9e9e9e'  }} onClick={() => dispatch({ type: 'increment' })} />
                     </Box>
                 </Modal>
             </div>
