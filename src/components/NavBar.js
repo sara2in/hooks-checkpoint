@@ -60,15 +60,6 @@ export default function SearchAppBar() {
         <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
             <Toolbar>
-            <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ mr: 2 }}
-            >
-                <MenuIcon />
-            </IconButton>
             <Typography
                 variant="h6"
                 noWrap
@@ -77,20 +68,10 @@ export default function SearchAppBar() {
             >
                 Products
             </Typography>
-            {/* <Search>
-                <SearchIconWrapper>
-                <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-                onChange={handleSearchChange}
-                />
-            </Search> */}
-            <Button 
+            {/* <Button 
                 variant="contained"
                 onClick={handleSearchClick}
-                >See List</Button>
+                >See List</Button> */}
             </Toolbar>
         </AppBar>
         </Box>

@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppContext from "./contexts/AppContext";
 
 import NavBar from './components/NavBar'
@@ -9,13 +9,8 @@ function App() {
 
   let [searchTerm, setSearchterm] = useState('');
   let [list, setList] = useState([])
-  
 
-  // function handleSearchChange(e) { 
-  //   setSearchterm(e.target.value);
-  // }
-
-  function handleSearchClick(e) {
+  async function handleSearchClick(e) {
     // setError(false);
     console.log('submit')
     fetch(`http://52.26.193.201:3000/products/list`)
@@ -36,6 +31,10 @@ function App() {
     // searchBar.value = "";
     e.preventDefault();
   }
+
+  useEffect(() => {
+		handleSearchClick();
+	}, []);
 
   // function handleModel(id) {
   //   let url = `http://52.26.193.201:3000/products/${id}/styles/`
