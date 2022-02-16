@@ -7,7 +7,6 @@ import ProductList from './components/ProductList'
 
 function App() {
 
-  let [searchTerm, setSearchterm] = useState('');
   let [list, setList] = useState([])
 
   async function handleSearchClick(e) {

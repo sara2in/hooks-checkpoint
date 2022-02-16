@@ -7,7 +7,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -81,11 +80,10 @@ export default function ProductCard(props) {
 
     return (
         <Card>
-            <CardActionArea sx={{ height: 1 }} onClick={e => { handleOpen(props.productInfo.id) }}>
+            <CardActionArea sx={{ height: 1, flexDirection: 'column'  }} onClick={e => { handleOpen(props.productInfo.id) }}>
                 <CardMedia
                     component="img"
                     height="140"
-                    width="auto"
                     image={productThumbnail ? productThumbnail : 'https://media.istockphoto.com/vectors/cross-sign-red-hand-drawn-brush-paint-x-letter-handwritten-crisscross-vector-id1276735653?k=20&m=1276735653&s=612x612&w=0&h=jMkY-27H5JC4Dt9Vlq4PurAJo9AFNQ9-sJPmLcixtlU='}
                     alt="green iguana"
                 />
